@@ -10,7 +10,6 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-// --- LOGIN ---
 const loginBtn = document.getElementById("login-btn");
 if (loginBtn) {
   loginBtn.addEventListener("click", async () => {
@@ -26,7 +25,6 @@ if (loginBtn) {
   });
 }
 
-// --- SIGNUP ---
 const signupBtn = document.getElementById("signup-btn");
 if (signupBtn) {
   signupBtn.addEventListener("click", async () => {
@@ -42,7 +40,6 @@ if (signupBtn) {
   });
 }
 
-// --- UPLOAD BOOK ---
 const uploadBtn = document.getElementById("upload-book-btn");
 if (uploadBtn) {
   onAuthStateChanged(auth, async (user) => {
@@ -84,7 +81,6 @@ if (uploadBtn) {
   });
 }
 
-// --- DISPLAY BOOKS ON HOMEPAGE ---
 const bookList = document.getElementById("book-list");
 if (bookList) {
   (async () => {
@@ -92,13 +88,14 @@ if (bookList) {
     bookList.innerHTML = "";
     querySnapshot.forEach((doc) => {
       const book = doc.data();
+      const id = doc.id;
       bookList.innerHTML += `
-        <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+        <div class="book-card">
           <img src="${book.imgURL}" alt="${book.title}" style="width:100%; max-width:200px;" />
           <h3>${book.title}</h3>
           <p>₹${book.price}</p>
-          <a href="${book.pdfURL}" target="_blank">
-            <button>Download PDF</button>
+          <a href="book.html?id=${id}">
+            <button>Buy Now</button>
           </a>
         </div>
       `;

@@ -1,3 +1,4 @@
+
 export const firebaseConfig = {
   apiKey: "AIzaSyD5eabtRXkVrFZqVd4tudD9cwQ6cibuWyE",
   authDomain: "parikshith-reddy-books-store.firebaseapp.com",

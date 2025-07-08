@@ -1,47 +1,29 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Parikshith's Bookstore</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="script.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    nav button { margin: 0 10px; }
+    .book-card {
+      border: 1px solid #ccc; border-radius: 8px; padding: 10px; margin: 10px;
+      max-width: 250px;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
-
-  <!-- Navbar -->
-  <header class="bg-white shadow p-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold">📘 Parikshith Books</h1>
-    <nav>
-      <a href="#" class="mx-2 text-blue-600">Home</a>
-      <a href="#" class="mx-2 text-blue-600">Books</a>
-      <a href="#" class="mx-2 text-blue-600">Login</a>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="text-center py-12">
-    <h2 class="text-3xl font-semibold mb-3">Sell & Share Your PDF Books</h2>
-    <p class="text-gray-600 mb-6">Secure login, UPI & PayPal payments, and instant downloads</p>
-    <a href="#books" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Browse Books</a>
-  </section>
-
-  <!-- Books Section -->
-  <section id="books" class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    <!-- Example Book Card -->
-    <div class="bg-white shadow-md p-4 rounded">
-      <img src="https://via.placeholder.com/300x180" alt="Book Image" class="rounded w-full h-40 object-cover">
-      <h3 class="text-lg font-semibold mt-3">Book Title</h3>
-      <p class="text-sm text-gray-600">Short description about the book content.</p>
-      <button class="bg-green-600 text-white px-4 py-1 rounded mt-3">Buy ₹99</button>
-    </div>
-
-    <!-- Add more book cards here -->
-  </section>
-
-  <!-- Footer -->
-  <footer class="text-center text-sm text-gray-500 py-6 border-t mt-10">
-    &copy; 2025 Parikshith Reddy Bookstore. All rights reserved.
-  </footer>
-
+<body>
+  <h1>📘 Welcome to Parikshith's Bookstore</h1>
+  <nav>
+    <a href="index.html"><button>Home</button></a>
+    <a href="login.html"><button>Login</button></a>
+    <a href="signup.html"><button>Signup</button></a>
+    <a href="dashboard.html"><button>Upload Book</button></a>
+  </nav>
+  <div id="book-list">Loading books...</div>
 </body>
 </html>
