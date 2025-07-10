@@ -3,7 +3,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/fireba
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
-import { firebaseConfig } from './firebase-config.js';
+const firebaseConfig = {
+  apiKey: "AIzaSyD5eabtRXkVrFZqVd4tudD9cwQ6cibuWyE",
+  authDomain: "parikshith-reddy-books-store.firebaseapp.com",
+  projectId: "parikshith-reddy-books-store",
+  storageBucket: "parikshith-reddy-books-store.appspot.com",
+  messagingSenderId: "102247596219",
+  appId: "1:102247596219:web:a9ad13f87f4fe65b78e99e"
+};
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
