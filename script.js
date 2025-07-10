@@ -1,8 +1,8 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyD5eabtRXkVrFZqVd4tudD9cwQ6cibuWyE",
   authDomain: "parikshith-reddy-books-store.firebaseapp.com",
@@ -17,6 +17,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
+// Login
 const loginBtn = document.getElementById("login-btn");
 if (loginBtn) {
   loginBtn.addEventListener("click", async () => {
@@ -32,6 +33,7 @@ if (loginBtn) {
   });
 }
 
+// Signup
 const signupBtn = document.getElementById("signup-btn");
 if (signupBtn) {
   signupBtn.addEventListener("click", async () => {
@@ -47,14 +49,16 @@ if (signupBtn) {
   });
 }
 
+// Upload Book
 const uploadBtn = document.getElementById("upload-book-btn");
 if (uploadBtn) {
   onAuthStateChanged(auth, async (user) => {
     if (!user || user.email !== "jangaparikshithreddy@gmail.com") {
-      alert("Access denied. Admins only.");
+      alert("Access denied. Admin only.");
       window.location.href = "login.html";
       return;
     }
+
     uploadBtn.addEventListener("click", async () => {
       const title = document.getElementById("book-title").value;
       const price = document.getElementById("book-price").value;
@@ -80,6 +84,7 @@ if (uploadBtn) {
           pdfURL,
           imgURL
         });
+
         alert("Book uploaded successfully!");
       } catch (err) {
         alert("Upload failed: " + err.message);
@@ -88,24 +93,26 @@ if (uploadBtn) {
   });
 }
 
+// Load books on homepage
 const bookList = document.getElementById("book-list");
 if (bookList) {
   (async () => {
-    const querySnapshot = await getDocs(collection(db, "books"));
-    bookList.innerHTML = "";
-    querySnapshot.forEach((doc) => {
-      const book = doc.data();
-      const id = doc.id;
-      bookList.innerHTML += `
-        <div class="book-card">
-          <img src="${book.imgURL}" alt="${book.title}" style="width:100%; max-width:200px;" />
-          <h3>${book.title}</h3>
-          <p>₹${book.price}</p>
-          <a href="book.html?id=${id}">
-            <button>Buy Now</button>
-          </a>
-        </div>
-      `;
-    });
+    try {
+      const querySnapshot = await getDocs(collection(db, "books"));
+      bookList.innerHTML = "";
+      querySnapshot.forEach((doc) => {
+        const book = doc.data();
+        bookList.innerHTML += `
+          <div>
+            <img src="${book.imgURL}" width="150" />
+            <h3>${book.title}</h3>
+            <p>₹${book.price}</p>
+            <a href="${book.pdfURL}" target="_blank">Download</a>
+          </div>
+        `;
+      });
+    } catch (err) {
+      alert("Failed to load books: " + err.message);
+    }
   })();
 }

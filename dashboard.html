@@ -1,15 +1,13 @@
-
 <!DOCTYPE html>
-<html>
-<head><title>Admin Dashboard</title></head>
+<html lang="en">
+<head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Admin Dashboard</title></head>
 <body>
-  <h2>Upload Book</h2>
-  <input id="book-title" placeholder="Book Title"/><br/>
-  <input id="book-price" placeholder="Price ₹" type="number"/><br/>
-  <label>PDF File: <input id="book-pdf" type="file"/></label><br/>
-  <label>Image File: <input id="book-image" type="file"/></label><br/>
+  <h2>Upload Book (Admin Only)</h2>
+  <input type="text" id="book-title" placeholder="Title" />
+  <input type="number" id="book-price" placeholder="Price" />
+  <input type="file" id="book-pdf" />
+  <input type="file" id="book-image" />
   <button id="upload-book-btn">Upload Book</button>
-  <script type="module" src="firebase-config.js"></script>
   <script type="module" src="script.js"></script>
 </body>
 </html>
